@@ -7,5 +7,5 @@ trait FirstService {
 
 object FirstService extends FirstService {
 
-  override def plus(i: Int) = i + 5
+  override def plus(i: Int) = i + 55
 }
