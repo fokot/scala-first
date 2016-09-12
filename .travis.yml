@@ -2,3 +2,21 @@ language: scala
 scala:
    - 2.11.2
    - 2.11.8
+   
+   
+before_install:
+ - npm install --save-dev travis-after-all
+
+after_script:
+ - |
+     declare exitCode;
+     $(npm bin)/travis-after-all
+     exitCode=$?
+
+     if [ "$exitCode" -eq 0 ]; then
+       if [[ ($TRAVIS_BRANCH == master) &&
+             ($TRAVIS_PULL_REQUEST == false) ]] ; then
+         curl -LO https://raw.github.com/mernst/plume-lib/master/bin/trigger-travis.sh
+         sh trigger-travis.sh fokot scala-second secret-token
+       fi
+     fi
