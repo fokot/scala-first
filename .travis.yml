@@ -14,10 +14,9 @@ after_script:
      exitCode=$?
 
      if [ "$exitCode" -eq 0 ]; then
-       echo vars $TRAVIS_BRANCH $TRAVIS_PULL_REQUEST
        if [[ ($TRAVIS_BRANCH == master) &&
              ($TRAVIS_PULL_REQUEST == false) ]] ; then
          curl -LO https://raw.github.com/mernst/plume-lib/master/bin/trigger-travis.sh
-         sh trigger-travis.sh fokot scala-second secret-token
+         sh trigger-travis.sh fokot scala-second $TRAVIS_ACCESS_TOKEN
        fi
      fi
