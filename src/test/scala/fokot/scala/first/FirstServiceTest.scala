@@ -1,4 +1,5 @@
-import fokot.scala.first.FirstService
+package fokot.scala.first
+
 import org.specs2.mutable.Specification
 
 class FirstServiceTest extends Specification {
